@@ -54,3 +54,20 @@ app.get('/', (req,res) =>{
     })
 });
 
+
+
+
+
+
+app.get('/getScore', (req,res,next) =>{
+    db.collection('test_scores').find({}).sort({
+        max: -1,
+    }).limit(1).toArray((err,result)=>{
+         
+        if (!err)
+           res.status(200).send({
+            result
+           }); 
+    })
+    
+});
